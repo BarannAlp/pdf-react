@@ -66,7 +66,7 @@ function Login(props: any) {
     <Container>
       <InnerContainer>
         <form onSubmit={formik.handleSubmit}>
-          <HeadingXXLarge>Welcome Back!</HeadingXXLarge>
+          <HeadingXXLarge>YurtÇim</HeadingXXLarge>
           <ErrorText>{error}</ErrorText>
           <InputWrapper>
             <StyledInput
@@ -84,7 +84,7 @@ function Login(props: any) {
               name="password"
               value={formik.values.password}
               onChange={formik.handleChange}
-              placeholder="Password"
+              placeholder="Şifre"
               clearOnEscape
               size="large"
               type="password"
@@ -92,7 +92,7 @@ function Login(props: any) {
           </InputWrapper>
           <InputWrapper>
             <Button size="large" kind="primary" isLoading={formik.isSubmitting}>
-              Login
+              Giriş Yap
             </Button>
           </InputWrapper>
         </form>
