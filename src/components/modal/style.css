@@ -1,0 +1,121 @@
+/* Modal Overlay */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.75);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    transition: opacity 0.3s ease;
+  }
+  
+  /* Modal Content Box */
+  .modal-content {
+    background-color: #fff;
+    padding: 30px;
+    border-radius: 10px;
+    width: 450px;
+    max-width: 100%;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    animation: slide-down 0.3s ease-out;
+    position: relative;
+  }
+  
+  /* Modal Header */
+  .modal-content h2 {
+    margin-top: 0;
+    font-size: 1.5rem;
+    text-align: center;
+    color: #333;
+    font-weight: bold;
+  }
+  
+  /* Input Group */
+  .input-group {
+    margin-bottom: 20px;
+  }
+  
+  .input-group label {
+    font-size: 0.9rem;
+    color: #666;
+    display: block;
+    margin-bottom: 8px;
+  }
+  
+  .input-group input[type="text"],
+  .input-group input[type="file"] {
+    width: 100%;
+    padding: 12px;
+    font-size: 1rem;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+    transition: border-color 0.3s ease;
+  }
+  
+  /* Input Focus Effect */
+  .input-group input:focus {
+    border-color: #007bff;
+    outline: none;
+  }
+  
+  /* Action Buttons */
+  .actions {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+  }
+  
+  /* Upload Button */
+  .actions button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 1rem;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  /* Close Button */
+  .actions button:nth-child(2) {
+    background-color: #6c757d;
+  }
+  
+  .actions button:hover {
+    background-color: #0056b3;
+  }
+  
+  .actions button:nth-child(2):hover {
+    background-color: #5a6268;
+  }
+  
+  /* Slide-Down Animation for Modal */
+  @keyframes slide-down {
+    from {
+      opacity: 0;
+      transform: translateY(-20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  /* Media Query for Mobile Devices */
+  @media (max-width: 500px) {
+    .modal-content {
+      width: 90%;
+      padding: 20px;
+    }
+  
+    .actions button {
+      padding: 8px 15px;
+    }
+  }
+  
+  
