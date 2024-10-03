@@ -2,7 +2,7 @@ import axios from "axios";
 
 export const fetchItems= async () => {
     try {
-        const response = await axios.get(`http://localhost:8000/api/pdfDetails/getFiles`, {
+        const response = await axios.get(`http://pdf-node-seven.vercel.app/api/pdfDetails/getFiles`, {
         });
   
         return response.data;
@@ -15,7 +15,7 @@ export const fetchItems= async () => {
 
   export const deletePdf= async (id) => {
     try {
-        const response = await axios.post(`http://localhost:8000/api/pdfDetails/deleteFile/${id}`, {
+        const response = await axios.post(`http://pdf-node-seven.vercel.app/api/pdfDetails/deleteFile/${id}`, {
         });
   
         return response.data;
@@ -33,7 +33,7 @@ export const fetchItems= async () => {
     formData.append('file', file);
   
     try {
-      const response = await axios.post('http://localhost:8000/api/pdfDetails/uploadFile', formData, {
+      const response = await axios.post('http://pdf-node-seven.vercel.app/api/pdfDetails/uploadFile', formData, {
         headers: {
           'Content-Type': 'multipart/form-data',
         },
