@@ -53,7 +53,7 @@ function Home() {
 
   const handlePdfClick = (value: any) => (event: React.MouseEvent<HTMLParagraphElement>) => {
     event.preventDefault(); // Prevent the default action if necessary
-    const pdfUrl = `http://pdf-node-seven.vercel.app/api/pdfDetails/files/${value}`;
+    const pdfUrl = `https://pdf-node-seven.vercel.app/api/pdfDetails/files/${value}`;
     const googleViewerUrl = `https://docs.google.com/gview?embedded=true&url=${encodeURIComponent(pdfUrl)}`;
     setPdfUrl(googleViewerUrl )
   };
