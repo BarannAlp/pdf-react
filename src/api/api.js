@@ -20,7 +20,7 @@ export const fetchItems= async () => {
   export const deletePdf = async (id, filePath) => {
     try {
       // Delete the PDF from your backend API
-      const response = await axios.post(`https://pdf-node-seven.vercel.app/pdfDetails/deleteFile/${id}`, {});
+      const response = await axios.post(`https://pdf-node-seven.vercel.app/api/pdfDetails/deleteFile/${id}`, {});
   
       // If the API call is successful, proceed to delete from Supabase
       if (response.data.status === 'ok') {
