@@ -27,8 +27,9 @@ function Home() {
   const [items, setItems] = useState([{
     _id:"",
     heading:"",
-    pdf:"",
-    title:""
+    pdfUrl:"",
+    title:"",
+    filePath:""
   }]);
 
   const fetchData = async () => {
@@ -51,15 +52,13 @@ function Home() {
     setValue2(newValue);
   }
 
-  const handlePdfClick = (value: any) => (event: React.MouseEvent<HTMLParagraphElement>) => {
+  const handlePdfClick = (pdfUrl: any) => (event: React.MouseEvent<HTMLParagraphElement>) => {
     event.preventDefault(); // Prevent the default action if necessary
-    const pdfUrl = `https://pdf-node-seven.vercel.app/api/pdfDetails/files/${value}`;
-    const googleViewerUrl = `https://docs.google.com/gview?embedded=true&url=${encodeURIComponent(pdfUrl)}`;
-    setPdfUrl(googleViewerUrl )
+    setPdfUrl(pdfUrl )
   };
 
 
-  const handlePdfDelete = (id: any) => async (event: React.MouseEvent<HTMLParagraphElement>) => {
+  const handlePdfDelete = (id: any,filePath:any) => async (event: React.MouseEvent<HTMLParagraphElement>) => {
     event.preventDefault(); // Prevent the default action if necessary
     
     // Show a confirmation dialog
@@ -68,7 +67,7 @@ function Home() {
     if (isConfirmed) {
       try {
         // Assuming 'deletePdf' handles the API call
-        const response = await deletePdf(id);
+        const response = await deletePdf(id,filePath);
   
         // Check if the delete was successful (you can adjust based on your API response)
         if (response.status === "ok") {
@@ -135,8 +134,8 @@ const handleFileUpload = async (title: string, file: File) => {
 
     <Container>
    
-   <div style={{ display: 'flex',width:"100%",height:"100%" ,justifyContent: "space-between"}}>
-   <div style={{width:"50%",height:"100%",alignItems:"center",display:"flex",flexDirection:"column",backgroundColor:"#879EAD",borderRadius:"30px",marginTop:"30px"}}>
+   <div style={{ display: 'flex',width:"100%",minHeight:"1000px"}}>
+   <div style={{width:"50%",alignItems:"center",display:"flex",flexDirection:"column",backgroundColor:"#879EAD",borderRadius:"30px",marginTop:"30px"}}>
    
    <HeadingSmall  color="black">Talimatlar</HeadingSmall>
 
@@ -184,13 +183,13 @@ const handleFileUpload = async (title: string, file: File) => {
       .filter((pdfItem) => pdfItem.heading === "Elektrik Bakım") // Filter items based on the heading
       .map((pdfItem, index) => (
         <div style={{display:"flex",justifyItems:"center"}} key={index}>
-          <p className="pdf-title pdf-item" onClick={handlePdfClick(pdfItem.pdf)}>
+          <p className="pdf-title pdf-item" onClick={handlePdfClick(pdfItem.pdfUrl)}>
             {pdfItem.title}
           </p>
           <p
           
             className="pdf-delete"
-            onClick={handlePdfDelete(pdfItem._id)}
+            onClick={handlePdfDelete(pdfItem._id,pdfItem.filePath)}
           >
             Sil
           </p>
@@ -208,13 +207,13 @@ const handleFileUpload = async (title: string, file: File) => {
       .filter((pdfItem) => pdfItem.heading === "Enerji") // Filter items based on the heading
       .map((pdfItem, index) => (
         <div style={{display:"flex",justifyItems:"center"}} key={index}>
-          <p className="pdf-title pdf-item" onClick={handlePdfClick(pdfItem.pdf)}>
+          <p className="pdf-title pdf-item" onClick={handlePdfClick(pdfItem.pdfUrl)}>
             {pdfItem.title}
           </p>
           <p
           
             className="pdf-delete"
-            onClick={handlePdfDelete(pdfItem._id)}
+            onClick={handlePdfDelete(pdfItem._id,pdfItem.filePath)}
           >
             Sil
           </p>
@@ -262,13 +261,13 @@ const handleFileUpload = async (title: string, file: File) => {
       .filter((pdfItem) => pdfItem.heading === "Risk Değerlendirme") // Filter items based on the heading
       .map((pdfItem, index) => (
         <div style={{display:"flex",justifyItems:"center"}} key={index}>
-          <p className="pdf-title pdf-item" onClick={handlePdfClick(pdfItem.pdf)}>
+          <p className="pdf-title pdf-item" onClick={handlePdfClick(pdfItem.pdfUrl)}>
             {pdfItem.title}
           </p>
           <p
           
             className="pdf-delete"
-            onClick={handlePdfDelete(pdfItem._id)}
+            onClick={handlePdfDelete(pdfItem._id,pdfItem.filePath)}
           >
             Sil
           </p>
@@ -286,13 +285,13 @@ const handleFileUpload = async (title: string, file: File) => {
       .filter((pdfItem) => pdfItem.heading === "Acil Durum Eylem Planı") // Filter items based on the heading
       .map((pdfItem, index) => (
         <div style={{display:"flex",justifyItems:"center"}} key={index}>
-          <p className="pdf-title pdf-item" onClick={handlePdfClick(pdfItem.pdf)}>
+          <p className="pdf-title pdf-item" onClick={handlePdfClick(pdfItem.pdfUrl)}>
             {pdfItem.title}
           </p>
           <p
           
             className="pdf-delete"
-            onClick={handlePdfDelete(pdfItem._id)}
+            onClick={handlePdfDelete(pdfItem._id,pdfItem.filePath)}
           >
             Sil
           </p>
@@ -318,13 +317,13 @@ const handleFileUpload = async (title: string, file: File) => {
       .filter((pdfItem) => pdfItem.heading === "Kalite") // Filter items based on the heading
       .map((pdfItem, index) => (
         <div style={{display:"flex",justifyItems:"center"}} key={index}>
-          <p className="pdf-title pdf-item" onClick={handlePdfClick(pdfItem.pdf)}>
+          <p className="pdf-title pdf-item" onClick={handlePdfClick(pdfItem.pdfUrl)}>
             {pdfItem.title}
           </p>
           <p
           
             className="pdf-delete"
-            onClick={handlePdfDelete(pdfItem._id)}
+            onClick={handlePdfDelete(pdfItem._id,pdfItem.filePath)}
           >
             Sil
           </p>
@@ -344,13 +343,13 @@ const handleFileUpload = async (title: string, file: File) => {
       .filter((pdfItem) => pdfItem.heading === "Makine Bakım") // Filter items based on the heading
       .map((pdfItem, index) => (
         <div style={{display:"flex",justifyItems:"center"}} key={index}>
-          <p className="pdf-title pdf-item" onClick={handlePdfClick(pdfItem.pdf)}>
+          <p className="pdf-title pdf-item" onClick={handlePdfClick(pdfItem.pdfUrl)}>
             {pdfItem.title}
           </p>
           <p
           
             className="pdf-delete"
-            onClick={handlePdfDelete(pdfItem._id)}
+            onClick={handlePdfDelete(pdfItem._id,pdfItem.filePath)}
           >
             Sil
           </p>
@@ -369,13 +368,13 @@ const handleFileUpload = async (title: string, file: File) => {
       .filter((pdfItem) => pdfItem.heading === "Mamül") // Filter items based on the heading
       .map((pdfItem, index) => (
         <div style={{display:"flex",justifyItems:"center"}} key={index}>
-          <p className="pdf-title pdf-item" onClick={handlePdfClick(pdfItem.pdf)}>
+          <p className="pdf-title pdf-item" onClick={handlePdfClick(pdfItem.pdfUrl)}>
             {pdfItem.title}
           </p>
           <p
           
             className="pdf-delete"
-            onClick={handlePdfDelete(pdfItem._id)}
+            onClick={handlePdfDelete(pdfItem._id,pdfItem.filePath)}
           >
             Sil
           </p>
@@ -394,13 +393,13 @@ const handleFileUpload = async (title: string, file: File) => {
       .filter((pdfItem) => pdfItem.heading === "Hammadde") // Filter items based on the heading
       .map((pdfItem, index) => (
         <div style={{display:"flex",justifyItems:"center"}} key={index}>
-          <p className="pdf-title pdf-item" onClick={handlePdfClick(pdfItem.pdf)}>
+          <p className="pdf-title pdf-item" onClick={handlePdfClick(pdfItem.pdfUrl)}>
             {pdfItem.title}
           </p>
           <p
           
             className="pdf-delete"
-            onClick={handlePdfDelete(pdfItem._id)}
+            onClick={handlePdfDelete(pdfItem._id,pdfItem.filePath)}
           >
             Sil
           </p>
@@ -419,13 +418,13 @@ const handleFileUpload = async (title: string, file: File) => {
       .filter((pdfItem) => pdfItem.heading === "Çevre") // Filter items based on the heading
       .map((pdfItem, index) => (
         <div style={{display:"flex",justifyItems:"center"}} key={index}>
-          <p className="pdf-title pdf-item" onClick={handlePdfClick(pdfItem.pdf)}>
+          <p className="pdf-title pdf-item" onClick={handlePdfClick(pdfItem.pdfUrl)}>
             {pdfItem.title}
           </p>
           <p
           
             className="pdf-delete"
-            onClick={handlePdfDelete(pdfItem._id)}
+            onClick={handlePdfDelete(pdfItem._id,pdfItem.filePath)}
           >
             Sil
           </p>
@@ -444,13 +443,13 @@ const handleFileUpload = async (title: string, file: File) => {
       .filter((pdfItem) => pdfItem.heading === "Yarı Mamül") // Filter items based on the heading
       .map((pdfItem, index) => (
         <div style={{display:"flex",justifyItems:"center"}} key={index}>
-          <p className="pdf-title pdf-item" onClick={handlePdfClick(pdfItem.pdf)}>
+          <p className="pdf-title pdf-item" onClick={handlePdfClick(pdfItem.pdfUrl)}>
             {pdfItem.title}
           </p>
           <p
           
             className="pdf-delete"
-            onClick={handlePdfDelete(pdfItem._id)}
+            onClick={handlePdfDelete(pdfItem._id,pdfItem.filePath)}
           >
             Sil
           </p>
@@ -467,7 +466,7 @@ const handleFileUpload = async (title: string, file: File) => {
     </Box>
     </div>
     
-    <div style={{width:"50%",height:"100%",alignItems:"center",display:"flex",flexDirection:"column",marginTop:"30px",backgroundColor:"#EAEAEA",borderRadius:"30px"}}>
+    <div style={{width:"50%",alignItems:"center",display:"flex",flexDirection:"column",marginTop:"30px",backgroundColor:"#EAEAEA",borderRadius:"30px"}}>
     <HeadingSmall  color="black">Önizleme</HeadingSmall>
 { pdfUrl != "" ? (
 
