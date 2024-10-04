@@ -31,28 +31,36 @@ function Login(props: any) {
   const onSubmit = async (values: any) => {
     console.log("Values: ", values);
     setError("");
-
+  
     try {
       const response = await axios.post(
         "https://pdf-node-seven.vercel.app/api/users/login",
         values
       );
-      console.log(response)
-      signIn({
-        token: response.data.token,
-        expiresIn: 3600,
-        tokenType: "Bearer",
-        authState: { email: values.email },
-      });
-      navigate("/")
+  
+      // Check if the user is an admin
+      if (response.data.isAdmin) {
+        signIn({
+          token: response.data.token,
+          expiresIn: 3600,
+          tokenType: "Bearer",
+          authState: { email: values.email },
+        });
+        navigate("/");
+      } else {
+        setError("You do not have admin access.");
+      }
     } catch (err) {
-      if (err && err instanceof AxiosError)
+      if (err && err instanceof AxiosError) {
         setError(err.response?.data.message);
-      else if (err && err instanceof Error) setError(err.message);
-
+      } else if (err && err instanceof Error) {
+        setError(err.message);
+      }
+  
       console.log("Error: ", err);
     }
   };
+  
 
   const formik = useFormik({
     initialValues: {
