@@ -74,7 +74,7 @@ function Login(props: any) {
     <Container>
       <InnerContainer>
         <form onSubmit={formik.handleSubmit}>
-          <HeadingXXLarge>YurtÇim</HeadingXXLarge>
+          <HeadingXXLarge>YurtÇim Talimat Paneli</HeadingXXLarge>
           <ErrorText>{error}</ErrorText>
           <InputWrapper>
             <StyledInput
