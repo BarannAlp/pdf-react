@@ -25,24 +25,29 @@ function Home() {
   const [heading, setHeading] = useState("");
   const [pdfUrl, setPdfUrl] = useState("");
   const [items, setItems] = useState([{
-    _id:"",
-    heading:"",
-    pdfUrl:"",
-    title:"",
-    filePath:""
+    _id: "",
+    heading: "",
+    pdfUrl: "",
+    title: "",
+    filePath: ""
   }]);
-
+  
   const fetchData = async () => {
     try {
-        const data = await fetchItems();
-        console.log(data.data)
-        setItems(data.data);
-       
+      const data = await fetchItems();
+      console.log(data.data);
+      
+      // Sort the items alphabetically by 'heading'
+      const sortedItems = data.data.sort((a:any, b:any) => a.heading.localeCompare(b.heading));
+      
+      // Update state with sorted items
+      setItems(sortedItems);
+      
     } catch (err) {
-      console.log(err)
-    } finally {
+      console.log(err);
     }
-};
+  };
+  
   const handleChange = (event:any, newValue:any) => {
     setValue(newValue);
   };
@@ -161,15 +166,16 @@ const handleFileUpload = async (title: string, file: File) => {
           }
         }}
       >
-        <Tab label="Elektrik Bakım" />
-        <Tab label="Enerji" />
-        <Tab label="İSG" />
-        <Tab label="Kalite" />
-        <Tab label="Makina Bakım" />
-        <Tab label="Mamül" />
-        <Tab label="Hammadde" />
-        <Tab label="Çevre" />
-        <Tab label="Yarı Mamül" />
+   <Tab label="Çevre" />
+<Tab label="Elektrik Bakım" />
+<Tab label="Enerji" />
+<Tab label="Hammadde" />
+<Tab label="İSG" />
+<Tab label="Kalite" />
+<Tab label="Makina Bakım" />
+<Tab label="Mamül" />
+<Tab label="Yarı Mamül" />
+
 
       </Tabs>
 

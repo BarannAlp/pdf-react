@@ -16,6 +16,8 @@
     "@types/react-dom": "^18.0.6",
     "axios": "^0.27.2",
     "baseui": "^12.1.2",
+    "expo-modules-core": "^1.12.25",
+    "expo-splash-screen": "^0.27.6",
     "formik": "^2.2.9",
     "react": "^18.2.0",
     "react-auth-kit": "^2.1.1",
