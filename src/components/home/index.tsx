@@ -374,6 +374,9 @@ const handleFileUpload = async (title: string, file: File) => {
 
 {value === 5 && (
   <div className="pdf-list">
+     <p className="add-new" onClick={() => { setShowModal(true); setHeading("Kalite"); }}>
+      Ekle
+    </p>
     {items
       .filter((pdfItem) => pdfItem.heading === "Kalite") // Filter items based on the heading
       .map((pdfItem, index) => (
@@ -391,9 +394,7 @@ const handleFileUpload = async (title: string, file: File) => {
         </div>
         
       ))}
-    <p className="add-new" onClick={() => { setShowModal(true); setHeading("Kalite"); }}>
-      Ekle
-    </p>
+   
   </div>
 )}
 
