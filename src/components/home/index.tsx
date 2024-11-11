@@ -233,7 +233,7 @@ const handleFileUpload = async (title: string, file: File) => {
 )}
 
 
-          {value === 2 && <div>
+          {value === 4 && <div>
 
                       <Box sx={{ display: 'flex'}}>
                           <Tabs
