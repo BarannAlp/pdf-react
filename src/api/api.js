@@ -67,12 +67,10 @@ export const fetchItems= async () => {
 export const uploadFile = async (heading, files) => {
   try {
     // Initialize an array to hold the upload results
-    console.info(1)
     const uploadResults = [];
 
     for (const file of files) {
       // Upload file to Supabase storage
-    console.info(2)
 
       const { data, error } = await supabase.storage
         .from('Talimatlar') // Replace with your bucket name
@@ -85,16 +83,13 @@ export const uploadFile = async (heading, files) => {
 
       // Get the public URL of the uploaded file
       const filePath = data.path;
-    console.info(3)
       
       // Get the public URL using the correct path (without the bucket name)
       const { data: publicUrlData } = supabase.storage.from('Talimatlar').getPublicUrl(filePath);
       const pdfUrl = publicUrlData?.publicUrl;
-      console.info(4)
 
       // Get the file title (remove .pdf extension)
       const title = file.name.endsWith('.pdf') ? file.name.replace(/\.pdf$/, '') : file.name;
-      console.info(5)
 
       // Save file info to API
       const response = await axios.post('https://pdf-node-seven.vercel.app/api/pdfDetails/uploadFile', {
