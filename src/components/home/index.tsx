@@ -185,7 +185,9 @@ const handleFileUpload = async (title: string, file: File) => {
 
         {value === 0 && (
   <div className="pdf-list">
-
+  <p className="add-new" onClick={() => { setShowModal(true); setHeading("Çevre"); }}>
+      Ekle
+    </p>
     {items
       .filter((pdfItem) => pdfItem.heading === "Çevre") // Filter items based on the heading
       .map((pdfItem, index) => (
@@ -203,14 +205,15 @@ const handleFileUpload = async (title: string, file: File) => {
         </div>
         
       ))}
-    <p className="add-new" onClick={() => { setShowModal(true); setHeading("Çevre"); }}>
-      Ekle
-    </p>
+  
   </div>
 )}
 
 {value === 1 && (
   <div className="pdf-list">
+     <p className="add-new" onClick={() => { setShowModal(true); setHeading("Elektrik Bakım"); }}>
+      Ekle
+    </p>
     {items
       .filter((pdfItem) => pdfItem.heading === "Elektrik Bakım") // Filter items based on the heading
       .map((pdfItem, index) => (
@@ -228,9 +231,7 @@ const handleFileUpload = async (title: string, file: File) => {
         </div>
         
       ))}
-    <p className="add-new" onClick={() => { setShowModal(true); setHeading("Elektrik Bakım"); }}>
-      Ekle
-    </p>
+   
   </div>
 )}
 
@@ -239,6 +240,9 @@ const handleFileUpload = async (title: string, file: File) => {
 
         {value === 2 && (
   <div className="pdf-list">
+      <p className="add-new" onClick={() => { setShowModal(true); setHeading("Enerji"); }}>
+      Ekle
+    </p>
     {items
       .filter((pdfItem) => pdfItem.heading === "Enerji") // Filter items based on the heading
       .map((pdfItem, index) => (
@@ -256,14 +260,15 @@ const handleFileUpload = async (title: string, file: File) => {
         </div>
         
       ))}
-    <p className="add-new" onClick={() => { setShowModal(true); setHeading("Enerji"); }}>
-      Ekle
-    </p>
+  
   </div>
 )}
 
 {value === 3 && (
   <div className="pdf-list">
+     <p className="add-new" onClick={() => { setShowModal(true); setHeading("Hammadde"); }}>
+      Ekle
+    </p>
     {items
       .filter((pdfItem) => pdfItem.heading === "Hammadde") // Filter items based on the heading
       .map((pdfItem, index) => (
@@ -281,9 +286,7 @@ const handleFileUpload = async (title: string, file: File) => {
         </div>
         
       ))}
-    <p className="add-new" onClick={() => { setShowModal(true); setHeading("Hammadde"); }}>
-      Ekle
-    </p>
+   
   </div>
 )}
 
@@ -318,6 +321,9 @@ const handleFileUpload = async (title: string, file: File) => {
     <Box sx={{ padding: 2 }}>
     {value2 === 0 && (
     <div className="pdf-list">
+      <p className="add-new" onClick={() => { setShowModal(true); setHeading("Risk Değerlendirme"); }}>
+        Ekle
+      </p>
       {items
         .filter((pdfItem) => pdfItem.heading === "Risk Değerlendirme") // Filter items based on the heading
         .map((pdfItem, index) => (
@@ -335,13 +341,14 @@ const handleFileUpload = async (title: string, file: File) => {
           </div>
           
         ))}
-      <p className="add-new" onClick={() => { setShowModal(true); setHeading("Risk Değerlendirme"); }}>
-        Ekle
-      </p>
+      
     </div>
   )}
                               {value2 === 1 && (
     <div className="pdf-list">
+      <p className="add-new" onClick={() => { setShowModal(true); setHeading("Acil Durum Eylem Planı"); }}>
+        Ekle
+      </p>
       {items
         .filter((pdfItem) => pdfItem.heading === "Acil Durum Eylem Planı") // Filter items based on the heading
         .map((pdfItem, index) => (
@@ -359,9 +366,7 @@ const handleFileUpload = async (title: string, file: File) => {
           </div>
           
         ))}
-      <p className="add-new" onClick={() => { setShowModal(true); setHeading("Acil Durum Eylem Planı"); }}>
-        Ekle
-      </p>
+      
     </div>
   )}
     </Box>
@@ -400,6 +405,9 @@ const handleFileUpload = async (title: string, file: File) => {
 
 {value === 6 && (
   <div className="pdf-list">
+    <p className="add-new" onClick={() => { setShowModal(true); setHeading("Makina Bakım"); }}>
+      Ekle
+    </p>
     {items
       .filter((pdfItem) => pdfItem.heading === "Makina Bakım") // Filter items based on the heading
       .map((pdfItem, index) => (
@@ -417,14 +425,15 @@ const handleFileUpload = async (title: string, file: File) => {
         </div>
         
       ))}
-    <p className="add-new" onClick={() => { setShowModal(true); setHeading("Makina Bakım"); }}>
-      Ekle
-    </p>
+    
   </div>
 )}
 
 {value === 7 && (
   <div className="pdf-list">
+     <p className="add-new" onClick={() => { setShowModal(true); setHeading("Mamül"); }}>
+      Ekle
+    </p>
     {items
       .filter((pdfItem) => pdfItem.heading === "Mamül") // Filter items based on the heading
       .map((pdfItem, index) => (
@@ -442,14 +451,15 @@ const handleFileUpload = async (title: string, file: File) => {
         </div>
         
       ))}
-    <p className="add-new" onClick={() => { setShowModal(true); setHeading("Mamül"); }}>
-      Ekle
-    </p>
+   
   </div>
 )}
 
 {value === 8 && (
   <div className="pdf-list">
+     <p className="add-new" onClick={() => { setShowModal(true); setHeading("Yarı Mamül"); }}>
+      Ekle
+    </p>
     {items
       .filter((pdfItem) => pdfItem.heading === "Yarı Mamül") // Filter items based on the heading
       .map((pdfItem, index) => (
@@ -467,9 +477,7 @@ const handleFileUpload = async (title: string, file: File) => {
         </div>
         
       ))}
-    <p className="add-new" onClick={() => { setShowModal(true); setHeading("Yarı Mamül"); }}>
-      Ekle
-    </p>
+   
   </div>
 )}
 
