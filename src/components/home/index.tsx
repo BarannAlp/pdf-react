@@ -386,7 +386,29 @@ const handleFileUpload = async (file: File[]) => {
   )}
     </Box>
 </Box>
-  
+<div className="pdf-list">
+     <p className="add-new" onClick={() => { setShowModal(true); setHeading("İSG"); }}>
+      Ekle
+    </p>
+    {items
+      .filter((pdfItem) => pdfItem.heading === "İSG") // Filter items based on the heading
+      .map((pdfItem, index) => (
+        <div style={{display:"flex",justifyItems:"center"}} key={index}>
+          <p className="pdf-title pdf-item" onClick={handlePdfClick(pdfItem.pdfUrl)}>
+            {pdfItem.title}
+          </p>
+          <p
+          
+            className="pdf-delete"
+            onClick={handlePdfDelete(pdfItem._id,pdfItem.filePath)}
+          >
+            Sil
+          </p>
+        </div>
+        
+      ))}
+   
+  </div>
   
 </div>}
 
