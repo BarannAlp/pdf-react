@@ -416,7 +416,7 @@ const handleFileUpload = async (title: string, file: File) => {
         </div>
         
       ))}
-    <p className="add-new" onClick={() => { setShowModal(true); setHeading("Makine Bakım"); }}>
+    <p className="add-new" onClick={() => { setShowModal(true); setHeading("Makina Bakım"); }}>
       Ekle
     </p>
   </div>
