@@ -88,7 +88,8 @@ export const uploadFile = async (heading, files) => {
       const pdfUrl = publicUrlData?.publicUrl;
 
       // Get the file title (remove .pdf extension)
-      const title = file.name.replace(/\.pdf$/, '');
+      const title = file.name.endsWith('.pdf') ? file.name.replace(/\.pdf$/, '') : file.name;
+
 
       // Save file info to API
       const response = await axios.post('https://pdf-node-seven.vercel.app/api/pdfDetails/uploadFile', {
