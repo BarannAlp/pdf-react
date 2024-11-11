@@ -185,6 +185,32 @@ const handleFileUpload = async (title: string, file: File) => {
 
         {value === 0 && (
   <div className="pdf-list">
+
+    {items
+      .filter((pdfItem) => pdfItem.heading === "Çevre") // Filter items based on the heading
+      .map((pdfItem, index) => (
+        <div style={{display:"flex",justifyItems:"center"}} key={index}>
+          <p className="pdf-title pdf-item" onClick={handlePdfClick(pdfItem.pdfUrl)}>
+            {pdfItem.title}
+          </p>
+          <p
+          
+            className="pdf-delete"
+            onClick={handlePdfDelete(pdfItem._id,pdfItem.filePath)}
+          >
+            Sil
+          </p>
+        </div>
+        
+      ))}
+    <p className="add-new" onClick={() => { setShowModal(true); setHeading("Çevre"); }}>
+      Ekle
+    </p>
+  </div>
+)}
+
+{value === 1 && (
+  <div className="pdf-list">
     {items
       .filter((pdfItem) => pdfItem.heading === "Elektrik Bakım") // Filter items based on the heading
       .map((pdfItem, index) => (
@@ -207,7 +233,11 @@ const handleFileUpload = async (title: string, file: File) => {
     </p>
   </div>
 )}
-{value === 1 && (
+
+
+        
+
+        {value === 2 && (
   <div className="pdf-list">
     {items
       .filter((pdfItem) => pdfItem.heading === "Enerji") // Filter items based on the heading
@@ -232,168 +262,7 @@ const handleFileUpload = async (title: string, file: File) => {
   </div>
 )}
 
-
-          {value === 4 && <div>
-
-                      <Box sx={{ display: 'flex'}}>
-                          <Tabs
-                            value={value2}
-                            onChange={handleChange2}
-                            orientation="vertical"    // Makes the tabs vertical (column)
-                            variant="scrollable"      // Allows scrolling if tabs exceed height
-                            sx={{
-                              borderRight: 3,
-                              borderColor: 'divider',
-                              '.MuiTab-root': { 
-                                fontWeight: 'bold', // Sets font weight for all tabs
-                                fontSize: '18px',   // Sets font size for all tabs
-                                textTransform: 'none', // Prevents uppercase transformation of text
-                                color: '#333',      // Default color for tab text
-                                '&.Mui-selected': {
-                                  color: '#1976d2', // Changes text color when the tab is selected
-                                },
-                              }
-                            }}
-                          >
-                            <Tab label="Risk Değerlendirme" />
-                            <Tab label="Acil Durum Eylem Planı" />
-                          </Tabs>
-
-                          {/* Tab content */}
-                          <Box sx={{ padding: 2 }}>
-                          {value2 === 0 && (
-  <div className="pdf-list">
-    {items
-      .filter((pdfItem) => pdfItem.heading === "Risk Değerlendirme") // Filter items based on the heading
-      .map((pdfItem, index) => (
-        <div style={{display:"flex",justifyItems:"center"}} key={index}>
-          <p className="pdf-title pdf-item" onClick={handlePdfClick(pdfItem.pdfUrl)}>
-            {pdfItem.title}
-          </p>
-          <p
-          
-            className="pdf-delete"
-            onClick={handlePdfDelete(pdfItem._id,pdfItem.filePath)}
-          >
-            Sil
-          </p>
-        </div>
-        
-      ))}
-    <p className="add-new" onClick={() => { setShowModal(true); setHeading("Risk Değerlendirme"); }}>
-      Ekle
-    </p>
-  </div>
-)}
-                            {value2 === 1 && (
-  <div className="pdf-list">
-    {items
-      .filter((pdfItem) => pdfItem.heading === "Acil Durum Eylem Planı") // Filter items based on the heading
-      .map((pdfItem, index) => (
-        <div style={{display:"flex",justifyItems:"center"}} key={index}>
-          <p className="pdf-title pdf-item" onClick={handlePdfClick(pdfItem.pdfUrl)}>
-            {pdfItem.title}
-          </p>
-          <p
-          
-            className="pdf-delete"
-            onClick={handlePdfDelete(pdfItem._id,pdfItem.filePath)}
-          >
-            Sil
-          </p>
-        </div>
-        
-      ))}
-    <p className="add-new" onClick={() => { setShowModal(true); setHeading("Acil Durum Eylem Planı"); }}>
-      Ekle
-    </p>
-  </div>
-)}
-                          </Box>
-                      </Box>
-                        
-                        
-        </div>}
-
-
-
-        {value === 3 && (
-  <div className="pdf-list">
-    {items
-      .filter((pdfItem) => pdfItem.heading === "Kalite") // Filter items based on the heading
-      .map((pdfItem, index) => (
-        <div style={{display:"flex",justifyItems:"center"}} key={index}>
-          <p className="pdf-title pdf-item" onClick={handlePdfClick(pdfItem.pdfUrl)}>
-            {pdfItem.title}
-          </p>
-          <p
-          
-            className="pdf-delete"
-            onClick={handlePdfDelete(pdfItem._id,pdfItem.filePath)}
-          >
-            Sil
-          </p>
-        </div>
-        
-      ))}
-    <p className="add-new" onClick={() => { setShowModal(true); setHeading("Kalite"); }}>
-      Ekle
-    </p>
-  </div>
-)}
-
-
-{value === 4 && (
-  <div className="pdf-list">
-    {items
-      .filter((pdfItem) => pdfItem.heading === "Makine Bakım") // Filter items based on the heading
-      .map((pdfItem, index) => (
-        <div style={{display:"flex",justifyItems:"center"}} key={index}>
-          <p className="pdf-title pdf-item" onClick={handlePdfClick(pdfItem.pdfUrl)}>
-            {pdfItem.title}
-          </p>
-          <p
-          
-            className="pdf-delete"
-            onClick={handlePdfDelete(pdfItem._id,pdfItem.filePath)}
-          >
-            Sil
-          </p>
-        </div>
-        
-      ))}
-    <p className="add-new" onClick={() => { setShowModal(true); setHeading("Makine Bakım"); }}>
-      Ekle
-    </p>
-  </div>
-)}
-
-{value === 5 && (
-  <div className="pdf-list">
-    {items
-      .filter((pdfItem) => pdfItem.heading === "Mamül") // Filter items based on the heading
-      .map((pdfItem, index) => (
-        <div style={{display:"flex",justifyItems:"center"}} key={index}>
-          <p className="pdf-title pdf-item" onClick={handlePdfClick(pdfItem.pdfUrl)}>
-            {pdfItem.title}
-          </p>
-          <p
-          
-            className="pdf-delete"
-            onClick={handlePdfDelete(pdfItem._id,pdfItem.filePath)}
-          >
-            Sil
-          </p>
-        </div>
-        
-      ))}
-    <p className="add-new" onClick={() => { setShowModal(true); setHeading("Mamül"); }}>
-      Ekle
-    </p>
-  </div>
-)}
-
-{value === 6 && (
+{value === 3 && (
   <div className="pdf-list">
     {items
       .filter((pdfItem) => pdfItem.heading === "Hammadde") // Filter items based on the heading
@@ -418,10 +287,95 @@ const handleFileUpload = async (title: string, file: File) => {
   </div>
 )}
 
-{value === 7 && (
+
+{value === 4 && <div>
+
+<Box sx={{ display: 'flex'}}>
+    <Tabs
+      value={value2}
+      onChange={handleChange2}
+      orientation="vertical"    // Makes the tabs vertical (column)
+      variant="scrollable"      // Allows scrolling if tabs exceed height
+      sx={{
+        borderRight: 3,
+        borderColor: 'divider',
+        '.MuiTab-root': { 
+          fontWeight: 'bold', // Sets font weight for all tabs
+          fontSize: '18px',   // Sets font size for all tabs
+          textTransform: 'none', // Prevents uppercase transformation of text
+          color: '#333',      // Default color for tab text
+          '&.Mui-selected': {
+            color: '#1976d2', // Changes text color when the tab is selected
+          },
+        }
+      }}
+    >
+      <Tab label="Risk Değerlendirme" />
+      <Tab label="Acil Durum Eylem Planı" />
+    </Tabs>
+
+    {/* Tab content */}
+    <Box sx={{ padding: 2 }}>
+    {value2 === 0 && (
+    <div className="pdf-list">
+      {items
+        .filter((pdfItem) => pdfItem.heading === "Risk Değerlendirme") // Filter items based on the heading
+        .map((pdfItem, index) => (
+          <div style={{display:"flex",justifyItems:"center"}} key={index}>
+            <p className="pdf-title pdf-item" onClick={handlePdfClick(pdfItem.pdfUrl)}>
+              {pdfItem.title}
+            </p>
+            <p
+            
+              className="pdf-delete"
+              onClick={handlePdfDelete(pdfItem._id,pdfItem.filePath)}
+            >
+              Sil
+            </p>
+          </div>
+          
+        ))}
+      <p className="add-new" onClick={() => { setShowModal(true); setHeading("Risk Değerlendirme"); }}>
+        Ekle
+      </p>
+    </div>
+  )}
+                              {value2 === 1 && (
+    <div className="pdf-list">
+      {items
+        .filter((pdfItem) => pdfItem.heading === "Acil Durum Eylem Planı") // Filter items based on the heading
+        .map((pdfItem, index) => (
+          <div style={{display:"flex",justifyItems:"center"}} key={index}>
+            <p className="pdf-title pdf-item" onClick={handlePdfClick(pdfItem.pdfUrl)}>
+              {pdfItem.title}
+            </p>
+            <p
+            
+              className="pdf-delete"
+              onClick={handlePdfDelete(pdfItem._id,pdfItem.filePath)}
+            >
+              Sil
+            </p>
+          </div>
+          
+        ))}
+      <p className="add-new" onClick={() => { setShowModal(true); setHeading("Acil Durum Eylem Planı"); }}>
+        Ekle
+      </p>
+    </div>
+  )}
+    </Box>
+</Box>
+  
+  
+</div>}
+
+
+
+{value === 5 && (
   <div className="pdf-list">
     {items
-      .filter((pdfItem) => pdfItem.heading === "Çevre") // Filter items based on the heading
+      .filter((pdfItem) => pdfItem.heading === "Kalite") // Filter items based on the heading
       .map((pdfItem, index) => (
         <div style={{display:"flex",justifyItems:"center"}} key={index}>
           <p className="pdf-title pdf-item" onClick={handlePdfClick(pdfItem.pdfUrl)}>
@@ -437,13 +391,63 @@ const handleFileUpload = async (title: string, file: File) => {
         </div>
         
       ))}
-    <p className="add-new" onClick={() => { setShowModal(true); setHeading("Çevre"); }}>
+    <p className="add-new" onClick={() => { setShowModal(true); setHeading("Kalite"); }}>
       Ekle
     </p>
   </div>
 )}
 
-{value === 8 && (
+{value === 5 && (
+  <div className="pdf-list">
+    {items
+      .filter((pdfItem) => pdfItem.heading === "Makine Bakım") // Filter items based on the heading
+      .map((pdfItem, index) => (
+        <div style={{display:"flex",justifyItems:"center"}} key={index}>
+          <p className="pdf-title pdf-item" onClick={handlePdfClick(pdfItem.pdfUrl)}>
+            {pdfItem.title}
+          </p>
+          <p
+          
+            className="pdf-delete"
+            onClick={handlePdfDelete(pdfItem._id,pdfItem.filePath)}
+          >
+            Sil
+          </p>
+        </div>
+        
+      ))}
+    <p className="add-new" onClick={() => { setShowModal(true); setHeading("Makine Bakım"); }}>
+      Ekle
+    </p>
+  </div>
+)}
+
+{value === 6 && (
+  <div className="pdf-list">
+    {items
+      .filter((pdfItem) => pdfItem.heading === "Mamül") // Filter items based on the heading
+      .map((pdfItem, index) => (
+        <div style={{display:"flex",justifyItems:"center"}} key={index}>
+          <p className="pdf-title pdf-item" onClick={handlePdfClick(pdfItem.pdfUrl)}>
+            {pdfItem.title}
+          </p>
+          <p
+          
+            className="pdf-delete"
+            onClick={handlePdfDelete(pdfItem._id,pdfItem.filePath)}
+          >
+            Sil
+          </p>
+        </div>
+        
+      ))}
+    <p className="add-new" onClick={() => { setShowModal(true); setHeading("Mamül"); }}>
+      Ekle
+    </p>
+  </div>
+)}
+
+{value === 7 && (
   <div className="pdf-list">
     {items
       .filter((pdfItem) => pdfItem.heading === "Yarı Mamül") // Filter items based on the heading
@@ -467,6 +471,7 @@ const handleFileUpload = async (title: string, file: File) => {
     </p>
   </div>
 )}
+
 
       </Box>
     </Box>
