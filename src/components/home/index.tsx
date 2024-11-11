@@ -14,6 +14,7 @@ import './index.css'
 function Home() {
   const singOut = useSignOut();
   const navigate = useNavigate();
+  const [loading, setLoading] = useState(false);
 
   const logout = () => {
     singOut();
@@ -107,6 +108,7 @@ const [showModal, setShowModal] = useState<boolean>(false);
 const handleFileUpload = async (file: File[]) => {
   try {
     // Assuming 'uploadFile' handles the API call
+    setLoading(true);
     const response = await uploadFile(heading, file);
 
     const errorResponse = response.find(result => result.status !== "ok");
@@ -125,6 +127,10 @@ const handleFileUpload = async (file: File[]) => {
     // In case of an unexpected error
     console.error("Error uploading file:", error);
     alert("Talimat yüklenirken sorun oluştu. Tekrar Deneyin.");
+  }
+  finally{
+    setLoading(false);
+
   }
 };
 
@@ -146,7 +152,13 @@ const handleFileUpload = async (file: File[]) => {
    <div style={{width:"50%",alignItems:"center",display:"flex",flexDirection:"column",backgroundColor:"#879EAD",borderRadius:"30px",marginTop:"30px"}}>
    
    <HeadingSmall  color="black">Talimatlar</HeadingSmall>
-
+   {loading && (
+        <div className="loading-overlay">
+          <div className="loading-popup">
+            <p>Yükleniyor...</p>
+          </div>
+        </div>
+      )}
       <Box sx={{ display: 'flex',alignItems:"left",width:"100%",}}>
         {/* Tabs with vertical orientation */}
         <Tabs
