@@ -64,26 +64,33 @@ export const fetchItems= async () => {
 
 
 
-  export const uploadFile = async (title, heading, file) => {
-    try {
+export const uploadFile = async (heading, files) => {
+  try {
+    // Initialize an array to hold the upload results
+    const uploadResults = [];
+
+    for (const file of files) {
       // Upload file to Supabase storage
       const { data, error } = await supabase.storage
         .from('Talimatlar') // Replace with your bucket name
-        .upload(`pdfs/${Date.now()}`, file);
-  
+        .upload(`pdfs/${Date.now()}-${file.name}`, file);
+
       if (error) {
         console.error('File upload to Supabase failed', error);
         throw new Error('File upload to Supabase failed');
       }
-  console.log(data)
+
       // Get the public URL of the uploaded file
       const filePath = data.path;
+      
+      // Get the public URL using the correct path (without the bucket name)
+      const { data: publicUrlData } = supabase.storage.from('Talimatlar').getPublicUrl(filePath);
+      const pdfUrl = publicUrlData?.publicUrl;
 
-    // Get the public URL using the correct path (without the bucket name)
-    const { data: publicUrlData } = supabase.storage.from('Talimatlar').getPublicUrl(filePath);
-    const pdfUrl = publicUrlData?.publicUrl;
-  
-      // Call your API to save the title, heading, and file URL
+      // Get the file title (remove .pdf extension)
+      const title = file.name.replace(/\.pdf$/, '');
+
+      // Save file info to API
       const response = await axios.post('https://pdf-node-seven.vercel.app/api/pdfDetails/uploadFile', {
         title,
         heading,
@@ -94,11 +101,14 @@ export const fetchItems= async () => {
           'Content-Type': 'application/json',
         },
       });
-  
-      return response.data;
-    } catch (error) {
-      console.error("File upload failed", error);
-      throw new Error("File upload failed");
+
+      // Collect the result for each file
+      uploadResults.push(response.data);
     }
-  };
-  
+
+    return uploadResults; // Return all results for the uploaded files
+  } catch (error) {
+    console.error("File upload failed", error);
+    throw new Error("File upload failed");
+  }
+};

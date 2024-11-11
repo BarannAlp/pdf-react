@@ -104,16 +104,19 @@ function Home() {
 
 const [showModal, setShowModal] = useState<boolean>(false);
 
-const handleFileUpload = async (title: string, file: File) => {
+const handleFileUpload = async (file: File[]) => {
   try {
     // Assuming 'uploadFile' handles the API call
-    const response = await uploadFile(title, heading, file);
+    const response = await uploadFile(heading, file);
 
-    // Check if the upload was successful (you can adjust based on your API response)
-    if (response.status === "ok") {
-      alert("Talimat başarıyla yüklendi.");
-    } else {
+    const errorResponse = response.find(result => result.status !== "ok");
+
+    if (errorResponse) {
+      // If there is an error in any result, alert the error
       alert("Talimat yüklenirken sorun oluştu. Tekrar Deneyin.");
+    } else {
+      // If all uploads are successful
+      alert("Talimat başarıyla yüklendi.");
     }
 
     // Fetch the updated data after uploading

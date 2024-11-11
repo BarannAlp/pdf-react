@@ -1,30 +1,29 @@
 import React, { useState } from 'react';
 import './style.css'
+
 interface FileUploadModalProps {
   showModal: boolean;
   onClose: () => void;
-  onFileUpload: (title: string, file: File) => void;
+  onFileUpload: (files: File[]) => void;
 }
 
 // File Upload Modal Component
 const FileUploadModal: React.FC<FileUploadModalProps> = ({ showModal, onClose, onFileUpload }) => {
-  const [title, setTitle] = useState<string>("");
-  const [file, setFile] = useState<File | null>(null);
+  const [files, setFiles] = useState<File[]>([]); // Updated state to store an array of files
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files) {
-      setFile(e.target.files[0]);
+      const selectedFiles = Array.from(e.target.files); // Convert FileList to array
+      setFiles(selectedFiles);
+  
+      
     }
-  };
-
-  const handleTitleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setTitle(e.target.value);
   };
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    if (title && file) {
-      onFileUpload(title, file);
+    if (files.length > 0) {
+      onFileUpload(files); // Pass multiple files to onFileUpload
       onClose(); // Close the modal after successful submission
     } else {
       alert("Lütfen başlık ve dosyayı doldurun.");
@@ -39,17 +38,13 @@ const FileUploadModal: React.FC<FileUploadModalProps> = ({ showModal, onClose, o
         <h2>Talimat Yükle</h2>
         <form onSubmit={handleSubmit}>
           <div className="input-group">
-            <label>Başlık:</label>
+            <label>Dosya:</label>
             <input
-              type="text"
-              value={title}
-              onChange={handleTitleChange}
+              type="file"
+              onChange={handleFileChange}
+              multiple // Allow multiple file selection
               required
             />
-          </div>
-          <div className="input-group">
-            <label>Dosya:</label>
-            <input  type="file" onChange={handleFileChange} required />
           </div>
           <div className="actions">
             <button type="submit">Yükle</button>
