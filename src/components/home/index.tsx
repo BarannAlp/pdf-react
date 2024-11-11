@@ -400,7 +400,7 @@ const handleFileUpload = async (title: string, file: File) => {
 {value === 6 && (
   <div className="pdf-list">
     {items
-      .filter((pdfItem) => pdfItem.heading === "Makine Bakım") // Filter items based on the heading
+      .filter((pdfItem) => pdfItem.heading === "Makina Bakım") // Filter items based on the heading
       .map((pdfItem, index) => (
         <div style={{display:"flex",justifyItems:"center"}} key={index}>
           <p className="pdf-title pdf-item" onClick={handlePdfClick(pdfItem.pdfUrl)}>
