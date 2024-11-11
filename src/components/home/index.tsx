@@ -115,6 +115,7 @@ const handleFileUpload = async (file: File[]) => {
 
     if (errorResponse) {
       // If there is an error in any result, alert the error
+      console.log(errorResponse)
       alert("Talimat yüklenirken sorun oluştu. Tekrar Deneyin.");
     } else {
       // If all uploads are successful
