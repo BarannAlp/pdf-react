@@ -397,7 +397,7 @@ const handleFileUpload = async (title: string, file: File) => {
   </div>
 )}
 
-{value === 5 && (
+{value === 6 && (
   <div className="pdf-list">
     {items
       .filter((pdfItem) => pdfItem.heading === "Makine Bakım") // Filter items based on the heading
@@ -422,7 +422,7 @@ const handleFileUpload = async (title: string, file: File) => {
   </div>
 )}
 
-{value === 6 && (
+{value === 7 && (
   <div className="pdf-list">
     {items
       .filter((pdfItem) => pdfItem.heading === "Mamül") // Filter items based on the heading
@@ -447,7 +447,7 @@ const handleFileUpload = async (title: string, file: File) => {
   </div>
 )}
 
-{value === 7 && (
+{value === 8 && (
   <div className="pdf-list">
     {items
       .filter((pdfItem) => pdfItem.heading === "Yarı Mamül") // Filter items based on the heading
