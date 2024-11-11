@@ -76,7 +76,7 @@ export const uploadFile = async (heading, files) => {
 
       const { data, error } = await supabase.storage
         .from('Talimatlar') // Replace with your bucket name
-        .upload(`pdfs/${Date.now()}-${file.name}`, file);
+        .upload(`pdfs/${Date.now()}`, file);
 
       if (error) {
         console.error('File upload to Supabase failed', error);
